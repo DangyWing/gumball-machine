@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "gumball-machine"
+version = "0.1.0"
+description = ""
+authors = ["Adam Svoboda <3341597+adamsvoboda@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "gumball_machine"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.28.2"
+web3 = "^5.31.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
