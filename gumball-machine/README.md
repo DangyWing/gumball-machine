@@ -1,3 +1,7 @@
+Super simple and hacky code for checking for new NFT collections deployed and available on Gumball.fi.
+Can send push notifications to your devices using Pushover.
+You need to implement the logic loop for persistent checks and intervals.
+
 ### Install
 
 ```
@@ -8,17 +12,15 @@ poetry update
 
 ### Configure and run
 
-
-
-
-Run: `poetry run python bot.py`
+- Update `PUSHOVER_USER_KEY` and `PUSHOVER_API_TOKEN` in `gumball_machine\__init__.py` if you wanna get push notifications.
+- Run: `poetry run python bot.py`
 
 ### Example output
 
 ```
 🪙 Gumball Machine 🪙
-    [*] Gathering quarters...')
-    [*] Checking for available collections...
+[*] Gathering quarters...
+[*] Checking for available collections...
     
 [*] Total collections found: 5
 [!] Found Collection: Hooters
@@ -37,6 +39,10 @@ Run: `poetry run python bot.py`
   - Token: GMs
   - Address: 0x0aaf1106aa2fb2aeef30cca206be445f3aab3b7a
   - Price: 219718145270344962789
+```
+
+Or when calling `get_nfts_by_owner`:
+```
 [!] Found Collection: LiquiCats
   - Token: MEOW
   - Address: 0x6a0959cd80fc9e2c1be958df1f8207c5b03f2a84

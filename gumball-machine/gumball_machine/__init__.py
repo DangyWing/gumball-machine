@@ -2,10 +2,32 @@ import requests
 import json
 import web3
 
-gb_collections_uri = 'https://api.thegraph.com/subgraphs/name/gumballprotocol/gb-arbitrum-1'
 
-# Add collections here you don't want to receive alerts on. Must use their contract address.
-blacklisted_collections = []
+# Pushover.net configuration
+PUSHOVER_USER_KEY = ''
+PUSHOVER_API_TOKEN = ''
+
+# Add collections here you DO NOT want to receive alerts on. Must use their contract address.
+BLACKLISTED_COLLECTIONS = []
+
+def send_pushover_notification(message):
+    """
+    Sends a message to your device(s) using Pushover
+    https://pushover.net
+    """
+
+    payload = {"message": message, "user": PUSHOVER_USER_KEY, "token": PUSHOVER_API_TOKEN }
+    response = requests.post(
+        'https://api.pushover.net/1/messages.json',
+        data=payload,
+        headers={
+            'User-Agent': 'Gumball-Machine'
+        },
+        timeout=5000
+    )
+    
+    return (response.status_code == 200)
+
 
 
 def get_available_collections():
@@ -28,11 +50,17 @@ def get_available_collections():
     print(f'[*] Total collections found: {len(collections)}')
 
     for c in collections:
-        if c['address'] not in blacklisted_collections:
+        if c['address'] not in BLACKLISTED_COLLECTIONS:
             print(f'[!] Found Collection: {c["name"]}')
             print(f'  - Token: {c["symbol"]}')
             print(f'  - Address: {c["address"]}')
             print(f'  - Price: {c["price"]}')
+
+            # Send pushover alert if you want
+            send_pushover_notification(f'[NEW COLLECTION] Name: {c["name"]}, Token: ${c["symbol"]}')
+
+            # Add the collection to the blacklist so you don't get an alert for it again
+            BLACKLISTED_COLLECTIONS.append(c['address'])
 
 
 
@@ -69,7 +97,7 @@ def get_nfts_by_owner(collection_address, owner_address):
             timeout=5000
         ).json()
 
-        # Check if legendary
+        # Check if legendary (note this attr is specific to the NFT collection, youll need to customize)
         is_rare = 'No'
         for attr in attributes["data"]["tokens"][0]["attributes"]:
             if attr["trait_type"] == "Legendary":
