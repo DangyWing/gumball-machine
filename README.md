@@ -1,6 +1,10 @@
-Super simple and hacky code for checking for new NFT collections deployed and available on Gumball.fi.
-Can send push notifications to your devices using Pushover.
-You need to implement the logic loop for persistent checks and intervals.
+# 🪙 Gumball Machine 🪙
+
+> Super simple and hacky code for checking for new NFT collections deployed and available on [Gumball.fi](https://www.gumball.fi)
+
+- Can send push notifications to your devices using Pushover.
+- You need to implement the logic loop for persistent checks and intervals.
+- You could use this to boostrap some automated buys here by incorporating a sniper bot on the token contract then automating nft token minting etc.
 
 ### Install
 
