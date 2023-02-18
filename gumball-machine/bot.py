@@ -2,11 +2,14 @@ from gumball_machine import *
 
 
 if __name__ == '__main__':
-    print('🪙 Gumball Machine 🪙')
-    print('')
-    print('[*] Gathering quarters...')
-    print('[*] Checking for available collections...')
+    print("""🪙 Gumball Machine 🪙
+    [*] Gathering quarters...')
+    [*] Checking for available collections...
+    """)
     
+    # Gets all available collections to purchase. Loops until killed.
     get_available_collections()
 
-    get_nfts_by_owner('0x6a0959cd80fc9e2c1be958df1f8207c5b03f2a84', '0x2e0692a3d9097931e9b7ba47035c8ea4a388f747')
+    # Can get NFTs by owner address and return their rarities etc.
+    # Thought was later on you can use this to check your own NFTS for attributes and flip/save some.
+    # get_nfts_by_owner('<nft collection address>', '<nft wallet address>')

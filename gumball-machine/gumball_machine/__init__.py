@@ -3,6 +3,8 @@ import json
 import web3
 
 gb_collections_uri = 'https://api.thegraph.com/subgraphs/name/gumballprotocol/gb-arbitrum-1'
+
+# Add collections here you don't want to receive alerts on. Must use their contract address.
 blacklisted_collections = []
 
 
